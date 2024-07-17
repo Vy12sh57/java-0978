@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class MeanMedianMode {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+        double[] numbers = new double[n];
+        
+        System.out.println("Enter the numbers:");
+        for (int i = 0; i < n; i++) {
+            numbers[i] = scanner.nextDouble();
+        }
+
+        double mean = calculateMean(numbers);
+        double median = calculateMedian(numbers);
+        List<Double> mode = calculateMode(numbers);
+        
+        System.out.println("Mean: " + mean);
+        System.out.println("Median: " + median);
+        System.out.print("Mode: ");
+        for (double m : mode) {
+            System.out.print(m + " ");
+        }
+        
+        scanner.close();
+    }
+
+    // Method to calculate Mean
+    public static double calculateMean(double[] numbers) {
+        double sum = 0;
+        for (double num : numbers) {
+            sum += num;
+        }
+        return sum / numbers.length;
+    }
+
+    // Method to calculate Median
+    public static double calculateMedian(double[] numbers) {
+        Arrays.sort(numbers);
+        int n = numbers.length;
+        if (n % 2 == 0) {
+            return (numbers[n / 2 - 1] + numbers[n / 2]) / 2;
+        } else {
+            return numbers[n / 2];
+        }
+    }
+
+    // Method to calculate Mode
+    public static List<Double> calculateMode(double[] numbers) {
+        Map<Double, Integer> frequencyMap = new HashMap<>();
+        for (double num : numbers) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+        
+        List<Double> modes = new ArrayList<>();
+        int maxFrequency = Collections.max(frequencyMap.values());
+        
+        for (Map.Entry<Double, Integer> entry : frequencyMap.entrySet()) {
+            if (entry.getValue() == maxFrequency) {
+                modes.add(entry.getKey());
+            }
+        }
+        
+        return modes;
+    }
+}

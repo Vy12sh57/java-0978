@@ -1,0 +1,16 @@
+public class SpecialCharacters {
+    public static void main(String[] args) {
+        String input = "Hello, World! @2024 #Java";
+        int count = 0;
+
+        System.out.print("Special characters: ");
+        for (char c : input.toCharArray()) {
+            if (!Character.isLetterOrDigit(c) && !Character.isWhitespace(c)) {
+                System.out.print(c);
+                count++;
+            }
+        }
+
+        System.out.println("\nNumber of special characters: " + count);
+    }
+}

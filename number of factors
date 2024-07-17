@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class NumberOfFactors {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter a positive integer: ");
+        int number = scanner.nextInt();
+        
+        if (number <= 0) {
+            System.out.println("Please enter a positive integer.");
+        } else {
+            int factorCount = countFactors(number);
+            System.out.println("Number of factors of " + number + " is: " + factorCount);
+        }
+        
+        scanner.close();
+    }
+
+    // Method to count factors of a number
+    public static int countFactors(int num) {
+        int count = 0;
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+}

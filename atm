@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class ATMTotalAmountCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Define denominations
+        int[] denominations = {2000, 500, 200, 100};
+        int[] noteCounts = new int[4];
+        String[] denominationNames = {"2000", "500", "200", "100"};
+
+        // Input denomination priority
+        System.out.println("Enter the priority of denominations in order (e.g., 0 1 2 3 for 2000, 500, 200, 100):");
+        int[] priority = new int[4];
+        for (int i = 0; i < 4; i++) {
+            priority[i] = scanner.nextInt();
+        }
+
+        // Input number of notes for each denomination based on priority
+        for (int i = 0; i < 4; i++) {
+            System.out.print("Enter the number of " + denominationNames[priority[i]] + " notes: ");
+            noteCounts[priority[i]] = scanner.nextInt();
+        }
+
+        // Calculate total amount
+        int totalAmount = 0;
+        for (int i = 0; i < 4; i++) {
+            totalAmount += denominations[i] * noteCounts[i];
+        }
+
+        // Print the total amount
+        System.out.println("Total available balance in the ATM machine is: " + totalAmount);
+
+        scanner.close();
+    }
+}

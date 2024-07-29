@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class CompositeNumbersInArray {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter the number of elements in the array: ");
+        int n = input.nextInt();
+        
+        int[] array = new int[n];
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = input.nextInt();
+        }
+        
+        int compositeCount = countCompositeNumbers(array);
+        System.out.println("Number of composite numbers in the array: " + compositeCount);
+        
+        input.close();
+    }
+    
+    public static int countCompositeNumbers(int[] array) {
+        int count = 0;
+        for (int number : array) {
+            if (isComposite(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    public static boolean isComposite(int number) {
+        if (number <= 1) {
+            return false;
+        }
+        int divisorCount = 0;
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                divisorCount++;
+            }
+        }
+        return divisorCount > 2;
+    }
+}

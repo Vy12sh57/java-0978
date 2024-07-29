@@ -1,0 +1,51 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MaxMinSumDifference {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the number of elements in the array
+        System.out.print("Enter the number of elements in the array: ");
+        int size = scanner.nextInt();
+        
+        int[] array = new int[size];
+
+        // Input the array elements
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        // Input M and N
+        System.out.print("Enter the value of M (for Mth maximum): ");
+        int M = scanner.nextInt();
+        System.out.print("Enter the value of N (for Nth minimum): ");
+        int N = scanner.nextInt();
+
+        // Sort the array
+        Arrays.sort(array);
+
+        // Check if M and N are within the bounds
+        if (M > size || N > size || M <= 0 || N <= 0) {
+            System.out.println("M or N is out of bounds.");
+        } else {
+            // Mth maximum number
+            int MthMax = array[size - M];
+            // Nth minimum number
+            int NthMin = array[N - 1];
+            
+            // Calculate sum and difference
+            int sum = MthMax + NthMin;
+            int difference = MthMax - NthMin;
+
+            // Print results
+            System.out.println("Mth maximum number: " + MthMax);
+            System.out.println("Nth minimum number: " + NthMin);
+            System.out.println("Sum: " + sum);
+            System.out.println("Difference: " + difference);
+        }
+
+        scanner.close();
+    }
+}

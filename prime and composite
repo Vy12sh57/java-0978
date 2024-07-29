@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class PrimeAndCompositeCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Initialize counters
+        int primeCount = 0;
+        int compositeCount = 0;
+
+        // Input the number of elements
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        // Input the numbers and count primes and composites
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) {
+            int number = scanner.nextInt();
+            
+            if (number > 1) {
+                if (isPrime(number)) {
+                    primeCount++;
+                } else {
+                    compositeCount++;
+                }
+            } else {
+                System.out.println(number + " is neither prime nor composite.");
+            }
+        }
+
+        // Print the counts
+        System.out.println("Number of prime numbers: " + primeCount);
+        System.out.println("Number of composite numbers: " + compositeCount);
+
+        scanner.close();
+    }
+
+    public static boolean isPrime(int number) {
+        if (number <= 1) {
+            return false; // Numbers less than or equal to 1 are not prime
+        }
+        if (number == 2) {
+            return true; // 2 is the only even prime number
+        }
+        if (number % 2 == 0) {
+            return false; // Even numbers other than 2 are not prime
+        }
+        for (int i = 3; i <= Math.sqrt(number); i += 2) {
+            if (number % i == 0) {
+                return false; // Number is divisible by i, so it's not prime
+            }
+        }
+        return true; // Number is prime
+    }
+}
